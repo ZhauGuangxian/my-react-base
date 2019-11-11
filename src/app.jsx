@@ -1,6 +1,11 @@
 import React, {Component } from 'react';
-import { Link ,Route } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
+
+// import { renderRoutes } from 'react-router-config';
+import renderRoutes from '@/routes/guard.jsx';
+import Layout from '@/views/layout/layout.jsx';
+import { getToken } from '@/utils/auth.js';
+// if (!route.requiresAuth || authed || route.path === authPath) {}
+
 class App extends Component{
     constructor(props){
         super(props);
@@ -8,22 +13,17 @@ class App extends Component{
             route: props.route.routes
         }
     }
-    componentWillMount(){
-
+    componentDidMount(){
+        console.log(this.props.history.location);
+        if(getToken() && this.props.history.pathname === '/') {
+             this.props.history.go('/home')
+        }
     }
     render(){
-        
         return(
-            <div className="app-container">
-                <div>
-                    <p>appIndex</p>
-                    <Link to="/home">首页</Link>
-                    <Link to="/playingPage">播放页</Link>
-                </div>
-                
-                    {renderRoutes(this.state.route)}
-                
-            </div>
+            <Layout>
+                {renderRoutes(this.state.route)}
+            </Layout>
         )
     }
 }

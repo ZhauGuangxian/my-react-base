@@ -1,17 +1,32 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
+import './style.less';
+import { connect } from 'react-redux';
 
 
-class HomePage extends Component{
-    constructor(props){
-        super(props)
+import { Input, Icon } from 'antd';
+
+
+class HomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            
+        };
     }
-    render(){
+    
+    reudner(){
         return(
-            <div class="app-container">
-                首页--页面
-               
-            </div>
+            <div>首页</div>
         )
     }
 }
-export default HomePage;
+
+/**
+ * @param state
+ */
+function mapStateToProps(state) {
+    return {
+        dsFore: state.dsFore
+    };
+}
+export default connect(mapStateToProps)(HomePage);
