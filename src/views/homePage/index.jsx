@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import './style.less';
-import { connect } from 'react-redux';
-
-
-import { Input, Icon } from 'antd';
 
 
 class HomePage extends Component {
@@ -14,19 +9,11 @@ class HomePage extends Component {
         };
     }
     
-    reudner(){
+    render(){
         return(
-            <div>首页</div>
+            <div>首页sasd1</div>
         )
     }
 }
 
-/**
- * @param state
- */
-function mapStateToProps(state) {
-    return {
-        dsFore: state.dsFore
-    };
-}
-export default connect(mapStateToProps)(HomePage);
+export default HomePage;

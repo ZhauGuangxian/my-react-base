@@ -2,8 +2,8 @@ import React, {Component } from 'react';
 
 // import { renderRoutes } from 'react-router-config';
 import renderRoutes from '@/routes/guard.jsx';
-import Layout from '@/views/layout/layout.jsx';
-import { getToken } from '@/utils/auth.js';
+
+
 // if (!route.requiresAuth || authed || route.path === authPath) {}
 
 class App extends Component{
@@ -13,17 +13,12 @@ class App extends Component{
             route: props.route.routes
         }
     }
-    componentDidMount(){
-        console.log(this.props.history.location);
-        if(getToken() && this.props.history.pathname === '/') {
-             this.props.history.go('/home')
-        }
-    }
+   
     render(){
         return(
-            <Layout>
+            <div>
                 {renderRoutes(this.state.route)}
-            </Layout>
+            </div>
         )
     }
 }
