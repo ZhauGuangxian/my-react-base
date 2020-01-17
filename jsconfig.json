@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "baseUrl": ".",
+      "paths": {
+        "@/*": [
+          "./src/*"
+        ]
+      }
+    },
+    "include": ["**/*.js", "**/*.jsx", "**/*.less", "**/*.css"],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "config"
+    ]
+}

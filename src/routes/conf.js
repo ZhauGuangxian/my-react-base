@@ -10,7 +10,6 @@ import PlayingPage from '@/views/playingPage/playingPage.jsx';
 
 import App from '@/app.jsx';
 import  LoginPage from '@/views/login/login.jsx';
-
 const routeConfig=[
     {
         path: '/login',
@@ -20,7 +19,7 @@ const routeConfig=[
     {
         path:'/',
         component:App,
-        redirect: '/home',
+        redirect: HomePage,
         requiresAuth: true,
         routes:[
             {
