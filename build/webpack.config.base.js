@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-12-05 14:27:49
- * @LastEditTime : 2019-12-26 10:51:06
- * @LastEditors  : Please set LastEditors
+ * @LastEditTime: 2020-02-21 18:11:29
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \data-service-front\build\webpack.config.base.js
  */
@@ -148,13 +148,28 @@ module.exports = {
     module: {
         rules: styleRules.concat([
             {
-                test: /\.js$|\.jsx$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader'
                 }
             },
+            {
+                text: /\.(|ts|tsx)$/,
+                exclude: /node_modules/,
+                use:[
+                    {
+                        loader: 'babel-loader'
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: {
 
+                          transpileOnly: true
+                        }
+                      }
+                ]
+            },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
@@ -186,7 +201,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'my-react-config',
             filename: 'index.html',
-           
+
             template: resolve('index.html')
         }),
         new MiniCssExtractPlugin({
@@ -201,7 +216,7 @@ module.exports = {
         ])
     ],
     resolve: {
-        extensions: ['.js', '.jsx', '.json'],
+        extensions: ['.js', '.jsx', '.json','.tsx', 'ts'],
         alias: {
             '@': path.resolve(__dirname, '../src')
         }
