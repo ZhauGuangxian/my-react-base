@@ -155,7 +155,7 @@ module.exports = {
                 }
             },
             {
-                text: /\.(|ts|tsx)$/,
+                test: /\.(|ts|tsx)$/,
                 exclude: /node_modules/,
                 use:[
                     {
