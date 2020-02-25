@@ -1,22 +1,47 @@
-/* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
-import { withRouter } from 'react-router-dom';
-// import renderRoutes from './guard';
+import { connect } from 'react-redux';
+
 class AuthComponent extends Component {
     constructor() {
         super();
     }
     componentDidMount() {
-        // const authed = getToken(); 做登录判断
-        const authed = true;
+        const authed = true
+
         if (!authed) {
             this.props.history.replace('/login');
         }
+        let browserPath = this.props.location.pathname;
+        let metaPath = this.props.route.path;
+        let canSetMeta = false;
+        if (metaPath.includes(':')) {
+            let u1 = browserPath.split('/');
+            u1.pop();
+            let u2 = metaPath.split('/');
+            u2.pop();
+            if (u1.join('/') === u2.join('/')) {
+                canSetMeta = true;
+            }
+        } else {
+            if (browserPath === metaPath) {
+                canSetMeta = true;
+            }
+        }
+        if (canSetMeta === true) {
+            let routeMeta = {
+                path: this.props.route.path,
+                title: this.props.route.title,
+                name: this.props.route.name || '',
+                parent: this.props.route.parent || '',
+                showBack: this.props.route.showBack || false,
+                backTo: this.props.route.backTo || ''
+            };
+            this.props.SetCurrentRoute(routeMeta);
+        }
     }
     render() {
-
         const RouteComponent = this.props.route.component;
         const props = this.props;
 
@@ -33,6 +58,24 @@ class AuthComponent extends Component {
     }
 }
 
+/**
+ * @param state
+ */
+function mapStateToProps(state) {
+    return {
+        store: state.sysSetting
+    };
+}
+
+/**
+ * @param dispatch
+ */
+function mapDispatchToProps(dispatch) {
+    return {
+        SetCurrentRoute: (payload) => dispatch({ type: 'SetCurrentRoute', payload })
+    };
+}
+
 const GuardComponent = withRouter(AuthComponent);
 
-export default GuardComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(GuardComponent);

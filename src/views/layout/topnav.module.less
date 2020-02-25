@@ -1,0 +1,87 @@
+.top-nav{
+    height: 60px;
+    background:linear-gradient(270deg,rgba(11,30,129,1) 0%,rgba(16,132,255,1) 100%);
+    padding:0 10px;
+    position: fixed;
+    width: 100%;
+    top:0;
+    left:0;
+    z-index:1000;
+    display: flex;
+    justify-content: space-between;
+    background-color: #2F4771;
+    >div{
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .left-cont{
+        
+        padding-left: 10px;
+        width: 350px;
+        .logo{
+            width: 32px;height: 32px;
+            margin-right: 8px;
+            img{
+                height: 100%;
+                width: 100%
+            }
+        }
+        .sysTitle{
+            font-size: 20px;
+            color:#fff;
+        }
+    }
+    .center-cont{
+        width: calc(100% - 630px);
+        .nav-item{
+            color: #fff;
+            height: 100%;
+            cursor: pointer;
+            line-height:60px;
+            width: 112px;
+            text-align:center;
+            &.active{
+                background-color:#1084FF
+            }
+        }
+    }
+    .user-info {
+        width: 280px;
+
+        display: flex;
+        padding-right: 40px;
+        align-items: center;
+        color: #fff;
+        img {
+          width: 24px;
+          height: 24px;
+          margin-right: 8px;
+        }
+         .ant-dropdown-link {
+          color: #fff;
+        }
+      }
+      .el-badge {
+        position: relative;
+        vertical-align: middle;
+        display: inline-block;
+        .el-badge__content {
+            background-color: #dd5162;
+            border-radius: 10px;
+            color: #fff;
+            display: inline-block;
+            font-size: 12px;
+            height: 18px;
+            line-height: 18px;
+            padding: 0 6px;
+            text-align: center;
+            white-space: nowrap;
+            border: 1px solid #fff;
+            position: absolute;
+            top: 0;
+            right: 18px;
+            transform: translateY(-50%) translateX(100%);
+        }
+    }
+}
