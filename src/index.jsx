@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 // import {renderRoutes} from 'react-router-config';
 import renderRoutes from '@/routes/guard.jsx';
 import { HashRouter} from 'react-router-dom';
-import routeConfig from './routes/conf.js';
+import routeConfig from './routes/conf.ts';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import '../src/styles/public.less';

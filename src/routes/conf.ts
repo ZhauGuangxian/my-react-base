@@ -1,12 +1,7 @@
 import { _import } from './util';
-const  HomePage = _import(()=>import(/* webpackChunkName: "HomePage" */'@/views/homePage/index.jsx'));
-const PlayingPage = _import(()=>import(/* webpackChunkName: "plauingPage" */'@/views/playingPage/playingPage.jsx'));
-// const App = _import(()=>import('@/app.jsx'));
-// const LoginPage = _import(() => import('@/views/login/login.jsx'));
+const  HomePage: any = _import(()=>import(/* webpackChunkName: "HomePage" */'@/views/homePage/index.jsx'));
 
-
-
-
+const MenuItem1: any = _import(() => import(/* webpackChunkName: "MenuOne" */ '@/views/MenuOne/index.tsx'))
 
 const App = _import(()=>import(/* webpackChunkName: "APP" */ '@/app.tsx'))
 const LoginPage = _import(()=>import(/* webpackChunkName: "HomePage" */'@/views/login/login.jsx'));
@@ -26,12 +21,14 @@ const routeConfig=[
                 path:'/home',
                 component:HomePage,
                 requiresAuth: true,
-                exact: true
+                exact: true,
+                title: '首页'
             },{
-                path:'/playingPage',
+                path:'/MenuOne',
                 requiresAuth: true,
                 exact: true,
-                component:PlayingPage
+                title: '菜单1',
+                component:MenuItem1
             }
         ]
     }

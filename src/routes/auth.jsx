@@ -1,6 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { withRouter } from 'react-router-dom';
 // import renderRoutes from './guard';
@@ -16,15 +16,18 @@ class AuthComponent extends Component {
         }
     }
     render() {
-     
+
         const RouteComponent = this.props.route.component;
         const props = this.props;
-       
+
         const redirectTo = this.props.route.redirect;
         return (
             <div>
                 <RouteComponent {...props} />
-                {redirectTo && <Route path={this.props.route.path} exact component={redirectTo} />}
+                {redirectTo && <Route component={redirectTo}
+                    exact
+                    path={this.props.route.path}
+                               />}
             </div>
         );
     }
