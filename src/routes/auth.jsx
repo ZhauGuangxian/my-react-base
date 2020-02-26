@@ -38,7 +38,7 @@ class AuthComponent extends Component {
                 showBack: this.props.route.showBack || false,
                 backTo: this.props.route.backTo || ''
             };
-            this.props.SetCurrentRoute(routeMeta);
+            this.props.SetRouteMeta(routeMeta);
         }
     }
     render() {
@@ -63,7 +63,7 @@ class AuthComponent extends Component {
  */
 function mapStateToProps(state) {
     return {
-        store: state.sysSetting
+        store: state.system
     };
 }
 
@@ -72,7 +72,7 @@ function mapStateToProps(state) {
  */
 function mapDispatchToProps(dispatch) {
     return {
-        SetCurrentRoute: (payload) => dispatch({ type: 'SetCurrentRoute', payload })
+        SetRouteMeta: (payload) => dispatch({ type: 'SetRouteMeta', payload })
     };
 }
 

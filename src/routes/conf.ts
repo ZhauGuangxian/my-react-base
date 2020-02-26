@@ -11,11 +11,12 @@ function cleanList (list: Array<any> = []):Array<any>{
     for (let i = 0; i < list.length; i++) {
         let temp = {
             title: list[i].title || '',
-            path: list[i].title || '',
-            showBack: list[i].title || false,
-            hide: list[i].title || false,
-            backTo: list[i].title || '',
-            routes: list[i].routes || []
+            path: list[i].path || '',
+            showBack: list[i].showBack || false,
+            hide: list[i].hide || false,
+            backTo: list[i].backTo || '',
+            routes: list[i].routes || [],
+            name: list[i].name || ''
          };
         
 
@@ -45,13 +46,15 @@ const routeConfig=[
                 component:HomePage,
                 requiresAuth: true,
                 exact: true,
-                title: '首页'
+                title: '首页',
+                name: 'FullHome'
             },{
                 path:'/MenuOne',
                 requiresAuth: true,
                 exact: true,
                 title: '菜单1',
-                component:MenuItem1
+                component:MenuItem1,
+                name: 'MenuOne'
             }
         ]
     }

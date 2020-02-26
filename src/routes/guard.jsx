@@ -12,7 +12,10 @@ const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
                     key={route.key || i}
                     path={route.path}
                     render={(props) => {
-                        return <GuardComponent {...props} {...extraProps} route={route} />;
+                        return <GuardComponent {...props}
+                            {...extraProps}
+                            route={route}
+                               />;
                     }}
                     strict={route.strict}
                 />

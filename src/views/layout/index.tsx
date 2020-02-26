@@ -6,39 +6,49 @@ const { SubMenu } = Menu;
 import { cleanConf } from '../../routes/conf.ts';
 import TopNav from './topNav';
 import { NavLink, Link } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-/**
- * @param list
- */
-function generateMenu(list: Array<any> = []): Array<any> {
-    let menus = null;
-    if (list instanceof Array) {
-        menus = list.map((item) => {
-            if (item.routes instanceof Array) {
+
+const generateLeftNav = (childs = [], collapsed, opens, key) => {
+    return childs.map((e, i) => {
+        if (e.hide !== true) {
+            if (e.routes instanceof Array && e.routes.length > 0) {
+                if (key.includes(e.path)) {
+                    opens.push(e.path);
+                }
                 return (
-                    <SubMenu title={item.title} key={'menu-' + item.name}>
-                        {generateMenu(item.routes)}
+                    <SubMenu
+                        key={e.path}
+                        popupClassName="ds-menu"
+                        className={e.top ? 'top ds-menu' : 'ds-menu'}
+                        title={
+                            collapsed === true ? (
+                                <span className="firstWordButton">{e.title.substr(0, 1)}</span>
+                            ) : (
+                                <a>{e.title}</a>
+                            )
+                        }
+                    >
+                        {generateLeftNav(e.routes, false, opens, key)}
                     </SubMenu>
                 );
             } else {
                 return (
-                    <Menu.Item key={'menu-' + item.name}>
-                        <NavLink
-                            to={{
-                                pathname: item.path
-                            }}
-                        >
-                            {item.title}
+                    <Menu.Item key={e.path} className={e.top ? 'top ds-menu' : 'ds-menu'} title={e.title}>
+                        <NavLink to={e.path} activeClassName="actived">
+                            {collapsed === true ? (
+                                <span className="firstWordButton">{e.title.substr(0, 1)}</span>
+                            ) : (
+                                <span className="popFFF">{e.title}</span>
+                            )}
                         </NavLink>
                     </Menu.Item>
                 );
             }
-        });
-    }
-    return menus;
-}
+        }
+    });
+};
 
 /**
  * @param key
@@ -110,9 +120,10 @@ class LayOutMain extends React.Component {
     }
 
     render() {
-        const Menus = generateMenu(cleanConf);
+        const opens = [];
         let breadItems = generatesBreadList(this.props.store.routeMeta, cleanConf);
-
+        const currentNavKey = this.props.location.pathname;
+        const Menus = generateLeftNav(cleanConf, this.state.collapsed, opens, currentNavKey);
         return (
             <div className="layout-main">
                 <TopNav></TopNav>
@@ -127,7 +138,7 @@ class LayOutMain extends React.Component {
                         }
                     >
                         <div className="logo" />
-                        <Menu selectedKeys={['menu-' + this.props.store.routeMeta.name]} mode="inline">
+                        <Menu defaultSelectedKeys={[ currentNavKey]} defaultOpenKeys={opens} mode="inline">
                             {Menus}
                         </Menu>
                     </Sider>
@@ -175,4 +186,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LayOutMain);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LayOutMain));

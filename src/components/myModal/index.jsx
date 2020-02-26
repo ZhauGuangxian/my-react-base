@@ -21,9 +21,11 @@ function Portal(WrappedComponent) {
 
             return (
                 <div className={style['wrapper-container']}>
-                    <div className={style['wrapper-bg']} onClick={()=>{
+                    <div className={style['wrapper-bg']}
+                        onClick={()=>{
                         this.props.onCancel()
-                    }}></div>
+                    }}
+                    ></div>
                     <WrappedComponent {...this.props}></WrappedComponent>
                 </div>
             )
@@ -52,17 +54,21 @@ class Modal extends React.Component {
         })
         if(!isNaN(parseInt(this.props.width))) {
             newStyle['width'] = parseInt(this.props.width) + 'px'
-            
+
         }
         let newClassName = style['modal-container'];
         if(this.props.className) {
             newClassName = newClassName + ' ' + this.props.className
         }
         return (
-            <div className={newClassName} style={newStyle}>
+            <div className={newClassName}
+                style={newStyle}
+            >
                 <div className={style['modal-head']}>
                     <span className={style['modal-head-title']}>{this.props.title || '标题'}</span>
-                    <Icon type="close" onClick={this.props.onCancel}/>
+                    <Icon onClick={this.props.onCancel}
+                        type="close"
+                    />
                 </div>
                 <div className={style['modal-body']}>
                     {this.props.children}
@@ -70,8 +76,13 @@ class Modal extends React.Component {
                 {this.props.footer !== null && <div className={style['modal-footer']}>
                     {
                         customfooter === true ? this.props.footer : (<div>
-                            <Button onClick={this.props.onOk} type="primary" style={{marginRight: '10px'}}>{this.props.okText || '确定'}</Button>
-                            <Button onClick={this.props.onCancel} type="primary">{this.props.okText || '取消'}</Button>
+                            <Button onClick={this.props.onOk}
+                                style={{marginRight: '10px'}}
+                                type="primary"
+                            >{this.props.okText || '确定'}</Button>
+                            <Button onClick={this.props.onCancel}
+                                type="primary"
+                            >{this.props.okText || '取消'}</Button>
                         </div>)
                     }
                 </div>}

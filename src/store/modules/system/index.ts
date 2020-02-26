@@ -6,7 +6,8 @@ const State = {
         path: '',
         showBack: false,
         hide: false,
-        backTo: ''
+        backTo: '',
+        name: ''
     } 
 }
 
