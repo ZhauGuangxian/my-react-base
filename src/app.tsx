@@ -1,26 +1,32 @@
 import React, {Component } from 'react';
 
 // import { renderRoutes } from 'react-router-config';
-import renderRoutes from '@/routes/guard.jsx';
-
+import RenderRoutes from '@/routes/guard2.jsx';
+import {cloneDeep} from 'lodash';
 import Layout from '@/views/layout/index.tsx';
 // if (!route.requiresAuth || authed || route.path === authPath) {}
 
 class App extends Component{
     constructor(props){
-        super(props);
+        super(props);   
         this.state = {
-            route: props.route.routes
+            childs: []
         }
     }
-   
+    
+    public componentDidMount() {
+        
+    }
+
     public render(){
+        const { route } = this.props || {};
         return(
-            <div>
+            
                 <Layout>
-                    {renderRoutes(this.state.route)}
+                    {/* {renderRoutes(this.props.childs)} */}
+                    <RenderRoutes router={route.routes}/>
                 </Layout>
-            </div>
+            
         )
     }
 }

@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 
 const generateLeftNav = (childs = [], collapsed, opens, key) => {
+
     return childs.map((e, i) => {
         if (e.hide !== true) {
             if (e.routes instanceof Array && e.routes.length > 0) {
@@ -110,6 +111,7 @@ function generatesBreadList(current, list = []) {
 class LayOutMain extends React.Component {
     constructor(props) {
         super(props);
+       
         this.state = {
             collapsed: false
         };
@@ -120,9 +122,11 @@ class LayOutMain extends React.Component {
     }
 
     render() {
+        
         const opens = [];
         let breadItems = generatesBreadList(this.props.store.routeMeta, cleanConf);
         const currentNavKey = this.props.location.pathname;
+        
         const Menus = generateLeftNav(cleanConf, this.state.collapsed, opens, currentNavKey);
         return (
             <div className="layout-main">

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 // import {renderRoutes} from 'react-router-config';
-import renderRoutes from '@/routes/guard.jsx';
+import RenderRoutes from '@/routes/guard2.jsx';
 import { HashRouter} from 'react-router-dom';
 import routeConfig from './routes/conf.ts';
 import { createStore } from 'redux';
@@ -13,7 +13,7 @@ export const store = createStore(Reducer);
 ReactDom.render(
     <Provider store={store}>
         <HashRouter >
-            {renderRoutes(routeConfig)}
+            <RenderRoutes router={routeConfig}/>
         </HashRouter>
     </Provider>
     ,
