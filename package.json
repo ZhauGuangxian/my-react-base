@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "antd": "^3.24.3",
+    "antd": "^4.0.0",
     "lodash": "^4.17.15",
     "react-hot-loader": "^4.12.10",
     "react-redux": "^7.1.1",
