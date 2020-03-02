@@ -7,7 +7,7 @@ import {cloneDeep} from 'lodash';
  */
 function mapStateToProps(state) {
     return {
-        store: state.system
+        // store: state.system
     };
 }
 
@@ -24,7 +24,6 @@ function withAuth(WrapperComponent) {
    
     class InnerComponent extends Component {
         constructor(props) {
-            debugger;
             super(props);
         }
 
@@ -36,33 +35,33 @@ function withAuth(WrapperComponent) {
                 console.log('didi');
             }
 
-            // let browserPath = this.props.location.pathname;
-            // let metaPath = this.props.route.path;
-            // let canSetMeta = false;
-            // if (metaPath.includes(':')) {
-            //     let u1 = browserPath.split('/');
-            //     u1.pop();
-            //     let u2 = metaPath.split('/');
-            //     u2.pop();
-            //     if (u1.join('/') === u2.join('/')) {
-            //         canSetMeta = true;
-            //     }
-            // } else {
-            //     if (browserPath === metaPath) {
-            //         canSetMeta = true;
-            //     }
-            // }
-            // if (canSetMeta === true) {
-            //     let routeMeta = {
-            //         path: this.props.route.path,
-            //         title: this.props.route.title,
-            //         name: this.props.route.name || '',
-            //         parent: this.props.route.parent || '',
-            //         showBack: this.props.route.showBack || false,
-            //         backTo: this.props.route.backTo || ''
-            //     };
-            //     this.props.SetRouteMeta(routeMeta);
-            // }
+            let browserPath = this.props.location.pathname;
+            let metaPath = this.props.route.path;
+            let canSetMeta = false;
+            if (metaPath.includes(':')) {
+                let u1 = browserPath.split('/');
+                u1.pop();
+                let u2 = metaPath.split('/');
+                u2.pop();
+                if (u1.join('/') === u2.join('/')) {
+                    canSetMeta = true;
+                }
+            } else {
+                if (browserPath === metaPath) {
+                    canSetMeta = true;
+                }
+            }
+            if (canSetMeta === true) {
+                let routeMeta = {
+                    path: this.props.route.path,
+                    title: this.props.route.title,
+                    name: this.props.route.name || '',
+                    parent: this.props.route.parent || '',
+                    showBack: this.props.route.showBack || false,
+                    backTo: this.props.route.backTo || ''
+                };
+                this.props.SetRouteMeta(routeMeta);
+            }
         }
 
         public render(){
@@ -82,8 +81,8 @@ function withAuth(WrapperComponent) {
     }
 
 
-    //return connect(mapStateToProps, mapDispatchToProps)(withRouter(InnerComponent));
-    return withRouter(InnerComponent);
+    return connect(mapStateToProps, mapDispatchToProps)(withRouter(InnerComponent));
+    //return withRouter(InnerComponent);
 }
 
 export default withAuth;

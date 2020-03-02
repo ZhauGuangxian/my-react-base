@@ -55,6 +55,19 @@ const routeConfig=[
                 title: '菜单1',
                 component:MenuItem1,
                 name: 'MenuOne'
+            },
+            {
+                path: '/contrubutes_manage',
+                requiresAuth: true,
+                title: '投稿管理',
+                component: MenuItem1,
+                name: 'ContributesManage'
+            }, {
+                path: '/follows_manage',
+                requiresAuth: true,
+                title: '关注管理',
+                component: MenuItem1,
+                name: 'FollowsManage'
             }
         ]
     }

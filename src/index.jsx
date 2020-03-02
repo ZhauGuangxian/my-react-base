@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-// import {renderRoutes} from 'react-router-config';
 import RenderRoutes from '@/routes/guard2.jsx';
 import { HashRouter} from 'react-router-dom';
 import routeConfig from './routes/conf.ts';
