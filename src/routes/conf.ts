@@ -2,7 +2,7 @@ import { _import } from './util';
 const  HomePage: any = _import(()=>import(/* webpackChunkName: "HomePage" */'@/views/homePage/index.jsx'));
 
 const MenuItem1: any = _import(() => import(/* webpackChunkName: "MenuOne" */ '@/views/MenuOne/index.tsx'))
-
+const routerCont: any = _import(()=>import(/* webpackChunkName: "RouterCont" */ '@/views/routerCont'));
 const App = _import(()=>import(/* webpackChunkName: "APP" */ '@/app.tsx'))
 const LoginPage = _import(()=>import(/* webpackChunkName: "HomePage" */'@/views/login/login.jsx'));
 
@@ -51,10 +51,20 @@ const routeConfig=[
             },{
                 path:'/MenuOne',
                 requiresAuth: true,
-                exact: true,
+        
                 title: '菜单1',
-                component:MenuItem1,
-                name: 'MenuOne'
+                component:routerCont,
+                name: 'MenuOne',
+                routes: [
+                    {
+                        path:'/MenuOne/Menu1_1',
+                        requiresAuth: true,
+                        exact: true,
+                        title: '菜单1-1',
+                        component:MenuItem1,
+                        name: 'MenuOne1_1',
+                    }
+                ]
             },
             {
                 path: '/contrubutes_manage',
