@@ -4,13 +4,14 @@ import renderRoutes from '@/routes/guard.jsx';
 import { HashRouter } from 'react-router-dom';
 import routeConfig from './routes/conf.js';
 
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
+import appState from '@/mobxStore/index';
 import '../src/styles/public.less';
-import store from '@/store/index';
+// import store from '@/store/index'; // 使用redux
 
 const render = () => {
     ReactDom.render(
-        <Provider store={store}>
+        <Provider appState={appState}>
             <HashRouter>{renderRoutes(routeConfig)}</HashRouter>
         </Provider>,
         document.getElementById('root')

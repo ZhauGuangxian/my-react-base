@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Button, List, Spin } from 'antd';
 import MyModal from '@/components/myModal/index';
-import { connect } from 'react-redux';
-// import { getDataList } from '@/store/modules/learn-thunk/actionCreator';
-
-import { sagaActionSetPornList, sagaActionSetUserList } from '@/store/actions';
+import { observer, inject } from 'mobx-react';
+@inject('appState')
+@observer
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -14,12 +13,13 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        console.log('dd');
-        this.props.sagaActionSetPornList();
         //getDataList();
+        const { actionGetPornList } = this.props.appState;
+        actionGetPornList();
     }
 
     render() {
+        const { pornList, pornListFetching, actionGetUserList, userList, userListFetching } = this.props.appState;
         return (
             <div>
                 <div>首页</div>
@@ -34,13 +34,13 @@ class HomePage extends Component {
                         试试modal1
                     </Button>
                 </div>
-                <Spin spinning={this.props.porn.pornListFetching}>
+                <Spin spinning={pornListFetching}>
                     <List
                         size="small"
                         header={<div>Header</div>}
                         footer={<div>Footer</div>}
                         bordered
-                        dataSource={this.props.porn.pornList}
+                        dataSource={pornList}
                         renderItem={(item) => <List.Item>{item.name}</List.Item>}
                     />
                 </Spin>
@@ -57,18 +57,18 @@ class HomePage extends Component {
                     test reactDom creat potral
                     <Button
                         onClick={() => {
-                            this.props.sagaActionSetUserList();
+                            actionGetUserList();
                         }}
                     >
                         获取lsp列表
                     </Button>
-                    <Spin spinning={this.props.user.userListFetching}>
+                    <Spin spinning={userListFetching}>
                         <List
                             size="small"
                             header={<div>Header</div>}
                             footer={<div>Footer</div>}
                             bordered
-                            dataSource={this.props.user.userList}
+                            dataSource={userList}
                             renderItem={(item) => <List.Item>{item.name}</List.Item>}
                         />
                     </Spin>
@@ -78,11 +78,4 @@ class HomePage extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        porn: state.porn,
-        user: state.user
-    };
-};
-
-export default connect(mapStateToProps, { sagaActionSetPornList, sagaActionSetUserList })(HomePage);
+export default HomePage;
