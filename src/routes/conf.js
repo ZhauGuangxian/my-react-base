@@ -4,37 +4,37 @@
 // const App = _import(()=>import('@/app.jsx'));
 // const LoginPage = _import(() => import('@/views/login/login.jsx'));
 
-
 import HomePage from '@/views/homePage/index.jsx';
-import PlayingPage from '@/views/playingPage/playingPage.jsx';
+import PlayingPage from '@/views/useMyRedux/index.jsx';
 
 import App from '@/app.jsx';
-import  LoginPage from '@/views/login/login.jsx';
-const routeConfig=[
+import LoginPage from '@/views/login/login.jsx';
+const routeConfig = [
     {
         path: '/login',
         component: LoginPage,
         requiresAuth: false
     },
     {
-        path:'/',
-        component:App,
+        path: '/',
+        component: App,
         redirect: HomePage,
         requiresAuth: true,
-        routes:[
+        routes: [
             {
-                path:'/home',
-                component:HomePage,
+                path: '/home',
+                component: HomePage,
                 requiresAuth: true,
                 exact: true
-            },{
-                path:'/playingPage',
+            },
+            {
+                path: '/playingPage',
                 requiresAuth: true,
                 exact: true,
-                component:PlayingPage
+                component: PlayingPage
             }
         ]
     }
-]
+];
 
 export default routeConfig;

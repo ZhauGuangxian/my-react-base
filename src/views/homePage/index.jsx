@@ -3,7 +3,7 @@ import { Button, List, Spin } from 'antd';
 import MyModal from '@/components/myModal/index';
 import { connect } from 'react-redux';
 // import { getDataList } from '@/store/modules/learn-thunk/actionCreator';
-
+import UseMyReduxCom from '@/views/useMyRedux/index';
 import { sagaActionSetPornList, sagaActionSetUserList } from '@/store/actions';
 class HomePage extends Component {
     constructor(props) {
@@ -73,6 +73,7 @@ class HomePage extends Component {
                         />
                     </Spin>
                 </MyModal>
+                <UseMyReduxCom />
             </div>
         );
     }
